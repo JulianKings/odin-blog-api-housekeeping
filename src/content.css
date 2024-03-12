@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Open Sans Italic';
+    src: url('./style/fonts/opensans-italic-variablefont_wdthwght-webfont.woff2') format('woff2'),
+         url('./style/fonts/opensans-italic-variablefont_wdthwght-webfont.woff') format('woff');
+    font-weight: 125 950;
+    font-stretch: 75% 125%;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('./style/fonts/opensans-variablefont_wdthwght-webfont.woff2') format('woff2'),
+         url('./style/fonts/opensans-variablefont_wdthwght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+body {
+    font-family: 'Open Sans', 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    background-color: #fbfdfc;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #336199;
+}
+
+
+#root {
+    overflow: auto;
+    height: 100%;
+}
+
+.content-box {
+    height: 100vh;
+    display: grid;
+    grid: 1fr 5rem / 16rem 1fr;
+}
+
+.navigation {
+    background-color: #272727;
+    grid-area: 1 / 1 / 3 / 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation .navigation-logo {
+    color: white;
+    font-weight: bold;
+    font-size: 2.5rem;
+    align-self: center;
+    margin: 4.5rem 0.5rem;
+}
+
+.navigation-logo span {
+    color: #336199;
+}
+
+.navigation-link {
+    color: white;
+}
+
+.content-holder {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.footer {
+    grid-area: 2 / 2 / 3 / 3;
+}
