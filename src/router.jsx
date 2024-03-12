@@ -3,6 +3,7 @@ import MainContent from "./mainContent";
 import ErrorPage from "./components/errorPage";
 import Index from "./components";
 import Login from "./components/login";
+import Logout from "./components/logout";
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -14,7 +15,11 @@ const Router = () => {
           {
               errorElement: <ErrorPage />,
               children: [
-                  {index: true, element: <Index />},                 
+                  {index: true, element: <Index />},     
+                  {
+                    path: '/logout',
+                    element: <Logout />
+                  }            
               ]
           }
         ]

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import './content.css'
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 function MainContent()
 {
@@ -57,18 +57,30 @@ function MainContent()
     <div className='content-box'>
         <nav className='navigation'>
             <div className='navigation-logo'>Blog<span>API</span></div>
-            <div className='navigation-link'>Dashboard</div>
-            <div className='navigation-link'>Articles</div>
-            <div className='navigation-link'>Categories</div>
-            <div className='navigation-link navigation-end'>Users</div>
-            <div className='navigation-link navigation-end'>Settings</div>
-            <div className='navigation-link navigation-end'>Logout</div>
+            <div className='navigation-link-box'><div className='navigation-link'>
+                <NavLink to='/' className={({ isActive }) => isActive ? "selected" : ""}>Dashboard</NavLink>
+            </div></div>
+            <div className='navigation-link-box'><div className='navigation-link'>
+                <NavLink to='/articles' className={({ isActive }) => isActive ? "selected" : ""}>Articles</NavLink>
+            </div></div>
+            <div className='navigation-link-box'><div className='navigation-link'>
+                <NavLink to='/categories' className={({ isActive }) => isActive ? "selected" : ""}>Categories</NavLink>
+            </div></div>
+            <div className='navigation-link-box navigation-end'><div className='navigation-link'>
+                <NavLink to='/users' className={({ isActive }) => isActive ? "selected" : ""}>Users</NavLink>
+            </div></div>
+            <div className='navigation-link-box'><div className='navigation-link'>
+                <NavLink to='/settings' className={({ isActive }) => isActive ? "selected" : ""}>Settings</NavLink>
+            </div></div>
+            <div className='navigation-link-box'><div className='navigation-link'>
+                <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>Logout</NavLink>
+            </div></div>
         </nav>
         <main className='content-holder'>
             <Outlet context={[userObject, setUserObject]} />
         </main>
 
-        <footer className='footer'>footer</footer>
+        <footer className='footer'>© 2024 Site developed as part of one of the final lessons for The Odin Project</footer>
     </div>
     </>
 }
