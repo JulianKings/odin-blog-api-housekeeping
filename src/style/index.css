@@ -1,8 +1,121 @@
 .index-container {
-    padding: 4rem 1.6rem;
+    padding: 4rem 1.8rem;
+    padding-bottom: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
 }
 
 .index-title {
     font-weight: bold;
     font-size: 2rem;
+}
+
+.statistic-box {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.statistic-item {
+    flex: 1 1 auto;
+    background-color: white;
+    padding: 0.8rem 0.4rem;
+    box-shadow: 0 0 0.3rem rgb(0, 0, 0, 0.15);
+    border: 1px solid rgb(0, 0, 0, 0.15);
+    border-radius: 0.2rem;
+    max-width: 30ch;
+    display: grid;
+    grid: 1.6rem 1fr / 6ch 1fr;
+}
+
+.statistic-image {
+    grid-area: 1 / 1 / 3 / 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.statistic-image img {
+    background-color: #272727;
+    padding: 0.35rem 0.35rem;
+    border-radius: 0.3rem;
+}
+
+.statistic-count {
+    grid-area: 1 / 2 / 2 / 3;
+    align-self: flex-end;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.statistic-caption {
+    grid-area: 2 / 2 / 3 / 3;
+    align-self: flex-start;
+    font-size: 1rem;
+}
+
+.recent-articles-box
+{
+    align-self: center;
+    width: 95%;
+    max-width: 95ch;
+    margin-top: 1.5rem;
+    background-color: white;
+    padding: 0.8rem 0.8rem;
+    border: 1px solid rgb(0, 0, 0, 0.25);
+    border-radius: 0.2rem;
+}
+
+.recent-articles-box-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.recent-articles-item {
+    display: grid;
+    grid-template-columns: 20% 7% 30% 18% 8% 5%;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 0.8rem
+}
+
+.recent-article-information {
+    color: rgb(0, 0, 0, 0.4)
+}
+
+.article-prompt, .comment-prompt {
+    margin: 0.6rem 0;
+    font-size: 0.9rem;
+}
+
+.recent-comments-box
+{
+    align-self: center;
+    width: 95%;
+    max-width: 95ch;
+    margin-top: 1.5rem;
+    background-color: white;
+    padding: 0.8rem 0.8rem;
+    border: 1px solid rgb(0, 0, 0, 0.25);
+    border-radius: 0.2rem;
+}
+
+.recent-comments-box-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.recent-comments-item {
+    display: grid;
+    grid-template-columns: 20% 40% 20% 5%;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 0.8rem;
+}
+
+.recent-comments-information {
+    color: rgb(0, 0, 0, 0.4)
 }

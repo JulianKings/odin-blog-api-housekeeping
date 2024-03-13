@@ -1,0 +1,9 @@
+.comment-separator {
+    margin: 0.4rem 0;
+    opacity: 0.2;
+}
+
+.comment-item .recent-comments-date, .comment-item .recent-comments-author
+{
+    font-weight: bold;
+}

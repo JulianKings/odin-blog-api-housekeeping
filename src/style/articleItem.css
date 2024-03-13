@@ -1,0 +1,36 @@
+.article-separator {
+    margin: 0.4rem 0;
+    opacity: 0.2;
+}
+
+.article-item {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.85rem;
+}
+
+.recent-articles-image img {
+    width: 90%;
+    border-radius: 0.4rem;
+}
+
+.article-item .recent-articles-date, .article-item .recent-articles-title, .article-item .recent-articles-author
+{
+    font-weight: bold;
+}
+
+.recent-articles-status.active {
+    color: white;
+    background-color: rgba(62,197,139,255);
+    width: fit-content;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.recent-articles-status.pending {
+    color: white;
+    background-color: rgba(254,181,83,255);
+    width: fit-content;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+}

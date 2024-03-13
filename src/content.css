@@ -44,7 +44,7 @@ a:hover {
 }
 
 .content-box {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid: 1fr 2.5rem / 16rem 1fr;
 }
@@ -52,10 +52,13 @@ a:hover {
 .navigation {
     background-color: #272727;
     grid-area: 1 / 1 / 3 / 2;
+}
+
+.navigation-box {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
     overflow-x: hidden;
+    height: 90vh;
 }
 
 .navigation a {
@@ -85,10 +88,27 @@ a:hover {
 .navigation-link {
     background-color: #272727;
     color: white;
-    padding: 1.2rem 2.3rem;
+    padding: 1.2rem 1.8rem;
     border: 0px;
     border-left: 1.2rem solid #272727;
     transition: transform 0.3s ease-in-out, background-color 0.4s ease-in-out;
+    display: flex;
+}
+
+.navigation-link a {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.navigation-link img {
+    height: 20px;
+    width: 20px;
+}
+
+.navigation-link span {
+    margin-top: 0.2rem;
 }
 
 .navigation-link:has(a.selected)
@@ -109,7 +129,6 @@ a:hover {
 
 .content-holder {
     grid-area: 1 / 2 / 2 / 3;
-    justify-self: stretch;
     display: flex;
     flex-direction: column;
 }

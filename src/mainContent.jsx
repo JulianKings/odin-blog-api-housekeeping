@@ -1,13 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import './content.css'
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import homeIcon from './assets/home.svg';
+import articleIcon from './assets/book.svg';
+import categoryIcon from './assets/list.svg';
+import usersIcon from './assets/users.svg';
+import settingsIcon from './assets/settings.svg';
+import logoutIcon from './assets/log-out.svg';
 
 function MainContent()
 {
     const [userObject, setUserObject] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if(!localStorage.getItem('sso_token'))
+        {
+            navigate('/login');
+        }
 
         if(localStorage.getItem('sso_token'))
         {
@@ -56,25 +67,45 @@ function MainContent()
     return <>
     <div className='content-box'>
         <nav className='navigation'>
+        <div className='navigation-box'>
             <div className='navigation-logo'>Blog<span>API</span></div>
             <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/' className={({ isActive }) => isActive ? "selected" : ""}>Dashboard</NavLink>
+                <NavLink to='/' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={homeIcon} />
+                    <span>Dashboard</span>
+                </NavLink>
             </div></div>
             <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/articles' className={({ isActive }) => isActive ? "selected" : ""}>Articles</NavLink>
+                <NavLink to='/articles' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={articleIcon} />
+                    <span>Articles</span>
+                </NavLink>
             </div></div>
             <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/categories' className={({ isActive }) => isActive ? "selected" : ""}>Categories</NavLink>
+                <NavLink to='/categories' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={categoryIcon} />
+                    <span>Categories</span>
+                </NavLink>
             </div></div>
             <div className='navigation-link-box navigation-end'><div className='navigation-link'>
-                <NavLink to='/users' className={({ isActive }) => isActive ? "selected" : ""}>Users</NavLink>
+                <NavLink to='/users' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={usersIcon} />
+                    <span>Users</span>
+                </NavLink>
             </div></div>
             <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/settings' className={({ isActive }) => isActive ? "selected" : ""}>Settings</NavLink>
+                <NavLink to='/settings' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={settingsIcon} />
+                    <span>Settings</span>
+                </NavLink>
             </div></div>
             <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>Logout</NavLink>
+                <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>
+                    <img src={logoutIcon} />
+                    <span>Logout</span>
+                </NavLink>
             </div></div>
+        </div>
         </nav>
         <main className='content-holder'>
             <Outlet context={[userObject, setUserObject]} />
