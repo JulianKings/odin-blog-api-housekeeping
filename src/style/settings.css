@@ -10,3 +10,51 @@
     font-weight: bold;
     font-size: 2rem;
 }
+
+.settings-caption {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    color:#0c4981;
+    font-weight: bold;
+}
+
+.settings-description {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.settings-selection {
+    margin: 1.2rem 0;
+    font-size: 0.9rem;
+}
+
+.settings-selection select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 2px;
+    width: 100%;
+    max-width: 25ch;
+}
+
+.settings-selection select:focus {
+    border: 1px solid #0c4981;
+    outline: none;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.settings-selection button {
+    margin-top: 1.2rem;
+    background-color: #336199;
+    color: white;
+    border: 0;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    padding: 0.6rem 2.8rem;
+    box-shadow: 0 0.25rem 0 #27374D;
+    transition: all 0.2s ease-in;
+}
+
+.settings-selection button:hover {
+    background-color: #27374D;
+    box-shadow: 0 0.25rem 0 #0d1725;
+}
