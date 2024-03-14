@@ -86,7 +86,7 @@ function Login()
                         </div>
                     </div>
                     <div className='form-row'>
-                        <button type='submit'>Sign up</button>
+                        <button type='submit'>Sign in</button>
                     </div>
                 </form>
             </div>

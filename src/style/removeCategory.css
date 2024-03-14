@@ -1,0 +1,28 @@
+.categories-description {
+    font-size: 1rem;
+    margin-top: 1.2rem;
+}
+
+.categories-confirm-prompt {
+    font-size: 1rem;
+    margin-top: 0.8rem;
+}
+
+.categories-article-list {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 1rem;
+}
+
+.categories-article-item {
+    margin-left: 0.8rem;
+}
+
+.categories-error {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1.2rem;
+    color: #500000;
+}

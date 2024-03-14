@@ -1,0 +1,12 @@
+.articles-container {
+    padding: 4rem 1.8rem;
+    padding-bottom: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.articles-title {
+    font-weight: bold;
+    font-size: 2rem;
+}

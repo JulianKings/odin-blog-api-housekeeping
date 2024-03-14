@@ -46,13 +46,13 @@ function Index()
             .then((response) => {
                 if(response && response.responseStatus === 'validRequest')
                 {
-                    // We are logged in
                     setRecentArticleList(response.articles);
                     setRecentCommentList(response.comments);
 
                     const informationObject = {};
                     informationObject.article_count = response.article_count;
                     informationObject.author_count = response.author_count;
+                    informationObject.subscription_count = response.subscription_count;
                     setDashboardStat(informationObject);
                 }
             })
@@ -64,6 +64,7 @@ function Index()
 
     let authorCount = '?';
     let articleCount = '?';
+    let subscriptionCount = '?';
 
     if(dashboardStat && dashboardStat.article_count)
     {
@@ -73,6 +74,11 @@ function Index()
     if(dashboardStat && dashboardStat.author_count)
     {
         authorCount = dashboardStat.author_count;
+    }
+
+    if(dashboardStat && dashboardStat.subscription_count)
+    {
+        subscriptionCount = dashboardStat.subscription_count;
     }
 
     let articleContent = <div className="article-prompt">Loading articles...</div>;
@@ -110,7 +116,7 @@ function Index()
                 </div>
                 <div className="statistic-item">
                     <div className="statistic-image"><img src={subscriptionIcon} /></div>
-                    <div className="statistic-count">0</div>
+                    <div className="statistic-count">{subscriptionCount}</div>
                     <div className="statistic-caption">Subscriptions</div>
                 </div>
                 <div className="statistic-item">

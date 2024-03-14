@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import './content.css'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import homeIcon from './assets/home.svg';
 import articleIcon from './assets/book.svg';
 import categoryIcon from './assets/list.svg';
@@ -13,6 +13,7 @@ function MainContent()
 {
     const [userObject, setUserObject] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if(!localStorage.getItem('sso_token'))
@@ -45,6 +46,8 @@ function MainContent()
                     {
                         setUserObject(null);
                     }
+
+                    navigate('/login');
                     return null;
                 } else if (response.status >= 400) {
                     throw new Error("server error");
@@ -62,7 +65,7 @@ function MainContent()
                 throw new Error(error);
             })
         }
-    }, []);
+    }, [location.pathname]);
 
     return <>
     <div className='content-box'>
