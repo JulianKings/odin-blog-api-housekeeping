@@ -10,3 +10,60 @@
     font-weight: bold;
     font-size: 2rem;
 }
+
+.articles-add {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.articles-add button {
+    background-color: #336199;
+    color: white;
+    border: 0;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    padding: 0.6rem 2.8rem;
+    box-shadow: 0 0.25rem 0 #27374D;
+    transition: all 0.2s ease-in;
+}
+
+.articles-add button:hover {
+    background-color: #27374D;
+    box-shadow: 0 0.25rem 0 #0d1725;
+    cursor: pointer;
+}
+
+.articles-box
+{
+    align-self: center;
+    width: 95%;
+    max-width: 95ch;
+    margin-top: 1.5rem;
+    background-color: white;
+    padding: 0.8rem 0.8rem;
+    border: 1px solid rgb(0, 0, 0, 0.25);
+    border-radius: 0.2rem;
+}
+
+.articles-box-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.articles-item {
+    display: grid;
+    grid-template-columns: 20% 7% 30% 18% 8% 5%;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 0.8rem;
+}
+
+.article-information {
+    color: rgb(0, 0, 0, 0.4)
+}
+
+.article-prompt {
+    margin: 0.6rem 0;
+    font-size: 0.9rem;
+}

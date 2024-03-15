@@ -7,3 +7,32 @@
 {
     font-weight: bold;
 }
+
+.recent-comments-menu {
+    position: relative;
+}
+
+.recent-comments-menu-box {
+    position: absolute;
+    right: -0.5rem;
+    bottom: 2.5rem;
+    background-color: white;
+    box-shadow: 0 0 0.3rem rgb(0, 0, 0, 0.15);
+    border-radius: 0.4rem;
+    max-height: 0;
+    transition: max-height 0.8s ease-in-out;
+    overflow: hidden;
+}
+
+.recent-comments-menu:focus .recent-comments-menu-box
+{
+    max-height: 100vh;
+}
+
+.recent-comments-menu-box-container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+}

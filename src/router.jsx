@@ -10,6 +10,7 @@ import Users from "./components/users";
 import Settings from "./components/settings";
 import AddCategory from "./components/addCategory";
 import RemoveCategory from "./components/removeCategory";
+import AddArticle from "./components/addArticle";
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -45,7 +46,15 @@ const Router = () => {
                   {
                     path: '/articles',
                     element: <Articles />
-                  },   
+                  }, 
+                  {
+                    path: '/articles/add',
+                    element: <AddArticle type='add' />,
+                  }, 
+                  {
+                    path: '/articles/edit/:id',
+                    element: <AddArticle type='edit' />,
+                  },  
                   {
                     path: '/users',
                     element: <Users />

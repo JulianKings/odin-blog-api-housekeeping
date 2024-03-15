@@ -80,17 +80,17 @@ function AddCategory({type})
         <div className="categories-container">
             <div className="categories-title">{pageTitle}</div>
             <form method="post" onSubmit={submitCategory}>
-                <div className="form-row">
-                        <div className="form-input">
-                            <div className="form-input-label"><label htmlFor="categoryName">Category name</label></div>
-                            <div className="form-input-content"><input ref={categoryInput} type="text" id="categoryName" name="category_name" minLength="1" maxLength="24" required defaultValue={categoryValue} /></div>
-                            <div className="form-input-error"></div>
-                        </div>
+            <div className="form-row">
+                    <div className="form-input">
+                        <div className="form-input-label"><label htmlFor="categoryName">Category name</label></div>
+                        <div className="form-input-content"><input ref={categoryInput} type="text" id="categoryName" name="category_name" minLength="1" maxLength="24" required defaultValue={categoryValue} /></div>
+                        <div className="form-input-error"></div>
                     </div>
-                    <div className='form-row'>
-                        <button type='submit'>{pageTitle}</button>
-                    </div>
-                </form>
+                </div>
+                <div className='form-row'>
+                    <button type='submit'>{pageTitle}</button>
+                </div>
+            </form>
         </div>
     </>;
 

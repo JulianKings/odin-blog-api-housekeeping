@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import '../../style/commentItem.css';
 import { DateTime } from 'luxon';
 import moreIcon from '../../assets/more.svg';
+import { Link } from 'react-router-dom';
 
 function CommentItem({ comment }) {
 
@@ -23,7 +24,17 @@ function CommentItem({ comment }) {
             <div className="recent-comments-date">{luxonDatetime.toFormat('LLL dd')} at {luxonDatetime.toFormat("hh':'mm a")}</div>
             <div className="recent-comments-content">{parsedCommentMessage}</div>
             <div className="recent-comments-author">{comment.author.first_name} {comment.author.last_name}</div>
-            <div className="recent-comments-menu"><img src={moreIcon} /></div>
+            <div className="recent-comments-menu" tabIndex={0}>
+                <img src={moreIcon} />
+
+                <div className='recent-comments-menu-box'>
+                    <div className='recent-comments-menu-box-container'>
+                        <div className='recent-comments-menu-box-item'>
+                            <Link to='comments/delete'>Delete</Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </>
 }
