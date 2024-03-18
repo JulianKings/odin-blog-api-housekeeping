@@ -55,7 +55,7 @@ function Articles()
     {
         if(articles.length > 0)
         {
-            articleContent = articles.map((art) => <ArticleItem key={art._id} article={art} />)
+            articleContent = articles.map((art) => <ArticleItem key={art._id} article={art} articlesState={articles} updateArticles={setArticles} />)
         } else {
             articleContent = <div className="article-prompt">There are no articles right now</div>;
         }

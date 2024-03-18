@@ -14,6 +14,7 @@ function AddArticle({type})
     const [inputs, addInput] = useMultiRefs();
     const [categories, setCategories] = useState(null);
     const [article, setArticle] = useState(null);
+    const [tinyLoaded, setTinyLoaded] = useState(false);
     const imagePreview = useRef(null);
     const editorInput = useRef(null);
     const { id } = useParams();
@@ -100,12 +101,12 @@ function AddArticle({type})
     }, []);
 
     useEffect(() => {
-        if(editorInput.current && type === 'edit' && article)
+        if(tinyLoaded && editorInput.current && type === 'edit' && article)
         {
             let cleanContent = (new DOMParser().parseFromString(article.message, "text/html")).documentElement.textContent;
             editorInput.current.setContent(cleanContent, {format : 'raw'});
         }
-    }, [editorInput.current, article])
+    }, [tinyLoaded])
 
     let pageTitle = 'Post article';
     if(type === 'edit')
@@ -128,6 +129,8 @@ function AddArticle({type})
         defaultImageUrl = (!article.imageUrl.startsWith('/src/assets/')) ? article.imageUrl : '';
     }
 
+    console.log(defaultCategory);
+
     let categoryOptions = <option value='default'>Loading categories...</option>;
 
     if(categories)
@@ -146,11 +149,14 @@ function AddArticle({type})
     }
 
     const articleContent = <Editor
-    onInit={(event, editor) => editorInput.current = editor}
+    onInit={(event, editor) => {
+            setTinyLoaded(true);
+            editorInput.current = editor;
+        }}
     id="article_content"
     apiKey='wjz4j6marq6bhqbltqlr06r6eyq18ybo05n6m3jwkr1stxzv'
     init={{
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes autocorrect typography inlinecss',
       toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons',
     }}
   />
@@ -180,7 +186,7 @@ function AddArticle({type})
                     <div className="form-input">
                         <div className="form-input-label"><label htmlFor="article_category">Category</label></div>
                         <div className="form-input-content">
-                            <select ref={addInput} defaultValue={defaultCategory} id="article_category" name="article_category" required>
+                            <select key={(article && tinyLoaded) ? 'loading' : 'loadedCategory'} ref={addInput} defaultValue={defaultCategory} id="article_category" name="article_category" required>
                                 {categoryOptions}    
                             </select>
                         </div>
@@ -200,7 +206,7 @@ function AddArticle({type})
                     <div className="form-input">
                         <div className="form-input-label"><label htmlFor="article_category">Image Preset</label></div>
                         <div className="form-input-content">
-                            <select onChange={updateImage} ref={addInput} defaultValue={defaultImagePreset} id="article_image_preset" name="article_image_preset">
+                            <select key={defaultImagePreset} onChange={updateImage} ref={addInput} defaultValue={defaultImagePreset} id="article_image_preset" name="article_image_preset">
                                 <option value='/src/assets/working.webp'>Working man</option>  
                                 <option value='/src/assets/newspaper.webp'>Newspaper</option>  
                                 <option value='/src/assets/city.webp'>A city</option>     
@@ -213,7 +219,7 @@ function AddArticle({type})
                         </div>
                         <div className="form-input-error"></div>
                         <div ref={imagePreview} className="form-input-preview">
-                            <img src='/src/assets/newspaper.webp' />
+                            <img src={defaultImagePreset} />
                         </div>
                     </div>
                 </div>
@@ -290,7 +296,6 @@ function AddArticle({type})
                         {
                             navigate('/articles');
                         } else {
-                            console.log(response.errors);
                             response.errors.forEach((error) => {
                                 const result = inputElements.find((input) => {
                                     if(input.id === error.path)
@@ -318,7 +323,78 @@ function AddArticle({type})
             }
         } else if(type === 'edit')
         {
-            //
+            const user = {};
+            let errorNoticed = false;
+            const inputElements = inputs();
+
+            inputElements.forEach((input) => {
+                if(input.classList.contains('error'))
+                {
+                    errorNoticed = true;
+                } else {
+                    user[input.id] = input.value;
+                }
+            });
+
+            if(editorInput.current)
+            {
+                user.article_content = editorInput.current.getContent();
+            }
+
+            user.article_id = id;
+
+            if(!errorNoticed && localStorage.getItem('sso_token'))
+            {
+                const ssoToken = localStorage.getItem('sso_token');
+                // ask the backEnd
+                fetch("http://localhost:3000/sso/admin/articles/edit", { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'bearer ' + ssoToken
+                    },
+                    mode: "cors",
+                    dataType: 'json',
+                    body: JSON.stringify(user),
+                })
+                .then((response) => {
+                if (response.status >= 400) {
+                    throw new Error("server error");
+                }
+                return response.json();
+                })
+                .then((response) => {
+                    if(response.responseStatus)
+                    {
+                        if(response.responseStatus === 'articleUpdated')
+                        {
+                            navigate('/articles');
+                        } else {
+                            response.errors.forEach((error) => {
+                                const result = inputElements.find((input) => {
+                                    if(input.id === error.path)
+                                    {
+                                        return input;
+                                    }
+                                })
+
+                                if(result)
+                                {                    
+                                    if(result.classList.contains("valid"))
+                                    {
+                                        result.classList.remove("valid");
+                                    }       
+                                    result.classList.add("error");
+                                    result.parentElement.nextElementSibling.textContent = error.msg;
+                                }
+                            });
+                        }
+                    }            
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
+            }
         }
     }
 

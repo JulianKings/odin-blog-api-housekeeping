@@ -82,7 +82,7 @@ function Settings()
                 <form method="post" onSubmit={updateFeatured} >
                     <div className="settings-selection-input">
                         <label htmlFor='article_selection'>Select an article: </label>
-                        <select ref={selectInput} defaultValue={selectValue} id='article_selection'>
+                        <select key={(settings) ? 'loading' : 'loaded'} ref={selectInput} defaultValue={selectValue} id='article_selection'>
                             {articleContent}
                         </select>
                     </div>
@@ -100,6 +100,7 @@ function Settings()
         if(settings && selectInput.current && localStorage.getItem('sso_token') &&
             selectInput.current.value)
         {
+
             const requestObject = {
                 featured_article: selectInput.current.value,
                 settings_id: settings._id

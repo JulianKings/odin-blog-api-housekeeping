@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import moreIcon from '../../assets/more.svg';
 import { Link } from 'react-router-dom';
 
-function ArticleItem({ article }) {
+function ArticleItem({ article, articlesState, updateArticles }) {
 
     let imageUrl = (article.imageUrl === '' ? '/src/assets/newspaper.webp' : article.imageUrl);
     //let articleUrl = '/article/' + article._id;
@@ -29,7 +29,7 @@ function ArticleItem({ article }) {
                 <div className='recent-articles-menu-box'>
                     <div className='recent-articles-menu-box-container'>
                         <div className='recent-articles-menu-box-item'>
-                            <Link to='/articles/delete'>Approve</Link>
+                            <Link onClick={attemptStatusUpdate} to='/articles'>{(article.status === 'active') ? 'Pending' : 'Approve'}</Link>
                         </div>
                         <div className='recent-articles-menu-box-item'>
                             <Link to={editLink}>Edit</Link>
@@ -41,11 +41,58 @@ function ArticleItem({ article }) {
                 </div>
             </div>
         </div>
-    </>
+    </>;
+
+    function attemptStatusUpdate(event)
+    {
+        event.preventDefault();
+        if(updateArticles && localStorage.getItem('sso_token'))
+        {
+            const requestObject = {};
+            requestObject.article_id = article._id;
+            requestObject.article_status = article.status;
+
+            const ssoToken = localStorage.getItem('sso_token');
+            // ask the backEnd
+            fetch("http://localhost:3000/sso/admin/articles/update_status", { 
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'bearer ' + ssoToken
+                },
+                mode: "cors",
+                dataType: 'json',
+                body: JSON.stringify(requestObject),
+            })
+            .then((response) => {
+            if (response.status >= 400) {
+                throw new Error("server error");
+            }
+            return response.json();
+            })
+            .then((response) => {
+                if(response.responseStatus)
+                {
+                    if(response.responseStatus === 'articleStatusUpdated')
+                    {
+                        const updatedArticle = response.updatedResult;
+                        const oldArray = articlesState.filter((art) => art._id !== article._id);
+                        const updatedArray = [updatedArticle].concat(oldArray);
+                        updateArticles(updatedArray);
+                    } 
+                }            
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
+        }
+    }
 }
 
 ArticleItem.propTypes = {
-    article: PropTypes.object
+    article: PropTypes.object,
+    articlesState: PropTypes.array,
+    updateArticles: PropTypes.func
 }
 
 export default ArticleItem
