@@ -26,8 +26,8 @@ You can see a test deployment of the site [here](https://odin-blog-frontend.netl
 ## Deployment
 
 The site uses **two** environment variables:
-**MONGODB_URI**: for the url of your mongodb connection string
-**JWT_SECURE_KEY**: the key to protect your JWT credentials so they can't be reverse-engineered
+ - **MONGODB_URI**: for the url of your mongodb connection string
+ - **JWT_SECURE_KEY**: the key to protect your JWT credentials so they can't be reverse-engineered
 
 You can set up a basic working site by creating a dummy article and setting it to featured, the settings collection only needs a document with any id as its object id and a field "featured_article" with the id of your dummy article, and the housekeeping will do the rest. You will have to create a user and make it an administrator manually.
 
