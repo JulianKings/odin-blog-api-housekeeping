@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import moreIcon from '../../assets/more.svg';
 import { Link } from 'react-router-dom';
 
-function ArticleItem({ article, articlesState, updateArticles }) {
+function ArticleItem({ article, articlesState, updateArticles, userInstance }) {
 
     let imageUrl = (article.imageUrl === '' ? '/src/assets/newspaper.webp' : article.imageUrl);
     //let articleUrl = '/article/' + article._id;
@@ -14,6 +14,44 @@ function ArticleItem({ article, articlesState, updateArticles }) {
     const capitalizedStatus = article.status.charAt(0).toUpperCase() + article.status.slice(1);
 
     const editLink = '/articles/edit/' + article._id;
+    const deleteLink = '/articles/delete/' + article._id;
+
+    let configureContentBox = <div className='recent-articles-menu-box'>
+        <div className='recent-articles-menu-box-container'>
+            <div className='recent-articles-menu-box-item'>
+                No actions available
+            </div>
+        </div>
+    </div>;
+
+    if(userInstance.role === 'administrator')
+    {
+        configureContentBox = <div className='recent-articles-menu-box'>
+            <div className='recent-articles-menu-box-container'>
+                <div className='recent-articles-menu-box-item'>
+                    <Link onClick={attemptStatusUpdate} to='/articles'>{(article.status === 'active') ? 'Pending' : 'Approve'}</Link>
+                </div>
+                <div className='recent-articles-menu-box-item'>
+                    <Link to={editLink}>Edit</Link>
+                </div>
+                <div className='recent-articles-menu-box-item'>
+                    <Link to={deleteLink}>Delete</Link>
+                </div>
+            </div>
+        </div>;
+    } else if(userInstance.role === 'author' && userInstance._id === article.author._id)
+    {
+        configureContentBox = <div className='recent-articles-menu-box'>
+            <div className='recent-articles-menu-box-container'>
+                <div className='recent-articles-menu-box-item'>
+                    <Link to={editLink}>Edit</Link>
+                </div>
+                <div className='recent-articles-menu-box-item'>
+                    <Link to={deleteLink}>Delete</Link>
+                </div>
+            </div>
+        </div>;
+    }
     
     return <>
         <hr className='article-separator' />
@@ -26,19 +64,7 @@ function ArticleItem({ article, articlesState, updateArticles }) {
             <div className="recent-articles-menu" tabIndex={0}>
                 <img src={moreIcon} />
 
-                <div className='recent-articles-menu-box'>
-                    <div className='recent-articles-menu-box-container'>
-                        <div className='recent-articles-menu-box-item'>
-                            <Link onClick={attemptStatusUpdate} to='/articles'>{(article.status === 'active') ? 'Pending' : 'Approve'}</Link>
-                        </div>
-                        <div className='recent-articles-menu-box-item'>
-                            <Link to={editLink}>Edit</Link>
-                        </div>
-                        <div className='recent-articles-menu-box-item'>
-                            <Link to='/articles/delete'>Delete</Link>
-                        </div>
-                    </div>
-                </div>
+                {configureContentBox}
             </div>
         </div>
     </>;
@@ -92,7 +118,8 @@ function ArticleItem({ article, articlesState, updateArticles }) {
 ArticleItem.propTypes = {
     article: PropTypes.object,
     articlesState: PropTypes.array,
-    updateArticles: PropTypes.func
+    updateArticles: PropTypes.func,
+    userInstance: PropTypes.object
 }
 
 export default ArticleItem

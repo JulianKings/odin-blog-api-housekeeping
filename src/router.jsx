@@ -11,6 +11,9 @@ import Settings from "./components/settings";
 import AddCategory from "./components/addCategory";
 import RemoveCategory from "./components/removeCategory";
 import AddArticle from "./components/addArticle";
+import RemoveArticle from "./components/removeArticle";
+import RemoveUser from "./components/removeUser";
+import RemoveComment from "./components/removeComment";
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -54,10 +57,22 @@ const Router = () => {
                   {
                     path: '/articles/edit/:id',
                     element: <AddArticle type='edit' />,
-                  },  
+                  },   
+                  {
+                    path: '/articles/delete/:id',
+                    element: <RemoveArticle />,
+                  },   
                   {
                     path: '/users',
                     element: <Users />
+                  },  
+                  {
+                    path: '/users/delete/:id',
+                    element: <RemoveUser />,
+                  },  
+                  {
+                    path: '/comments/delete/:id',
+                    element: <RemoveComment />,
                   },   
                   {
                     path: '/settings',

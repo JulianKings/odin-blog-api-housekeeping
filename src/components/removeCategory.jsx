@@ -18,7 +18,7 @@ function RemoveCategory()
             navigate('/login');
         }
 
-        if(userObject && userObject.role !== 'administrator')
+        if(userObject && (userObject.role !== 'administrator' && userObject.role !== 'author'))
         {
             navigate('/logout');
         }

@@ -18,6 +18,8 @@ function CommentItem({ comment }) {
 
     let luxonDatetime = DateTime.fromISO(comment.timestamp);
 
+    const commentDeleteLink = '/comments/delete/' + comment._id;
+
     return <>
         <hr className='comment-separator' />
         <div className="recent-comments-item comment-item">
@@ -30,7 +32,7 @@ function CommentItem({ comment }) {
                 <div className='recent-comments-menu-box'>
                     <div className='recent-comments-menu-box-container'>
                         <div className='recent-comments-menu-box-item'>
-                            <Link to='comments/delete'>Delete</Link>
+                            <Link to={commentDeleteLink}>Delete</Link>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,70 @@
+.users-separator {
+    margin: 0.4rem 0;
+    opacity: 0.2;
+}
+
+.users-list-item {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.85rem;
+}
+
+.users-list-item .users-list-name, .users-list-item .users-list-username, .users-list-item .users-list-mail
+{
+    font-weight: bold;
+}
+
+.users-list-role.user {
+    color: white;
+    background-color: rgba(62,197,139,255);
+    width: fit-content;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.users-list-role.administrator {
+    color: white;
+    background-color: rgba(0,0,0,255);
+    width: fit-content;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.users-list-role.author {
+    color: white;
+    background-color: rgba(0,0,0,255);
+    width: fit-content;
+    padding: 0.4rem 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.users-list-menu {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.users-list-menu-box {
+    position: absolute;
+    right: -0.5rem;
+    bottom: 2.5rem;
+    background-color: white;
+    box-shadow: 0 0 0.3rem rgb(0, 0, 0, 0.15);
+    border-radius: 0.4rem;
+    max-height: 0;
+    transition: max-height 0.8s ease-in-out;
+    overflow: hidden;
+}
+
+.users-list-menu:focus .users-list-menu-box
+{
+    max-height: 100vh;
+}
+
+.users-list-menu-box-container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0.8rem;
+}

@@ -22,7 +22,7 @@ function Index()
             navigate('/login');
         }
 
-        if(userObject && userObject.role !== 'administrator')
+        if(userObject && (userObject.role !== 'administrator' && userObject.role !== 'author'))
         {
             navigate('/logout');
         } else if(userObject)
@@ -87,7 +87,7 @@ function Index()
     {
         if(recentArticleList.length > 0)
         {
-            articleContent = recentArticleList.map((art) => <ArticleItem key={art._id} article={art} />)
+            articleContent = recentArticleList.map((art) => <ArticleItem key={art._id} article={art} userInstance={userObject} />)
         } else {
             articleContent = <div className="article-prompt">There are no articles right now</div>;
         }

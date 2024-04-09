@@ -67,6 +67,38 @@ function MainContent()
         }
     }, [location.pathname]);
 
+    let adminContent = <>
+        <div className='navigation-link-box navigation-end'><div className='navigation-link'>
+            <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>
+                <img src={logoutIcon} />
+                <span>Logout</span>
+            </NavLink>
+        </div></div>
+        </>;
+
+    if(userObject && userObject.role === 'administrator')
+    {
+        adminContent = <><div className='navigation-link-box navigation-end'><div className='navigation-link'>
+        <NavLink to='/users' className={({ isActive }) => isActive ? "selected" : ""}>
+            <img src={usersIcon} />
+            <span>Users</span>
+        </NavLink>
+        </div></div>
+        <div className='navigation-link-box'><div className='navigation-link'>
+            <NavLink to='/settings' className={({ isActive }) => isActive ? "selected" : ""}>
+                <img src={settingsIcon} />
+                <span>Settings</span>
+            </NavLink>
+        </div></div>
+        <div className='navigation-link-box'><div className='navigation-link'>
+            <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>
+                <img src={logoutIcon} />
+                <span>Logout</span>
+            </NavLink>
+        </div></div>
+        </>;
+    }
+
     return <>
     <div className='content-box'>
         <nav className='navigation'>
@@ -90,24 +122,7 @@ function MainContent()
                     <span>Categories</span>
                 </NavLink>
             </div></div>
-            <div className='navigation-link-box navigation-end'><div className='navigation-link'>
-                <NavLink to='/users' className={({ isActive }) => isActive ? "selected" : ""}>
-                    <img src={usersIcon} />
-                    <span>Users</span>
-                </NavLink>
-            </div></div>
-            <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/settings' className={({ isActive }) => isActive ? "selected" : ""}>
-                    <img src={settingsIcon} />
-                    <span>Settings</span>
-                </NavLink>
-            </div></div>
-            <div className='navigation-link-box'><div className='navigation-link'>
-                <NavLink to='/logout' className={({ isActive }) => isActive ? "selected" : ""}>
-                    <img src={logoutIcon} />
-                    <span>Logout</span>
-                </NavLink>
-            </div></div>
+            {adminContent}
         </div>
         </nav>
         <main className='content-holder'>

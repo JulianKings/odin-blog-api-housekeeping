@@ -25,7 +25,7 @@ function AddArticle({type})
             navigate('/login');
         }
 
-        if(userObject && userObject.role !== 'administrator')
+        if(userObject && (userObject.role !== 'administrator' && userObject.role !== 'author'))
         {
             navigate('/logout');
         } else if(userObject)
@@ -156,7 +156,7 @@ function AddArticle({type})
     id="article_content"
     apiKey='wjz4j6marq6bhqbltqlr06r6eyq18ybo05n6m3jwkr1stxzv'
     init={{
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes autocorrect typography inlinecss',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
       toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons',
     }}
   />
