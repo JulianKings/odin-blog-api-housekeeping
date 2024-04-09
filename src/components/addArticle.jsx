@@ -168,7 +168,7 @@ function AddArticle({type})
                 <div className="form-row">
                     <div className="form-input">
                         <div className="form-input-label"><label htmlFor="article_title">Title</label></div>
-                        <div className="form-input-content"><input ref={addInput} type="text" id="article_title" name="article_title" minLength="1" maxLength="24" required defaultValue={defaultTitle} /></div>
+                        <div className="form-input-content"><input ref={addInput} type="text" id="article_title" name="article_title" minLength="1" maxLength="56" required defaultValue={defaultTitle} /></div>
                         <div className="form-input-error"></div>
                     </div>
                 </div>
