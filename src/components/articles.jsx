@@ -23,7 +23,7 @@ function Articles()
         {
             // fetch
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/articles", {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/articles", {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken

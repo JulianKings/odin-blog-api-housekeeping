@@ -29,7 +29,7 @@ function RemoveComment()
             }
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backend
-            fetch("http://localhost:3000/sso/admin/comments/force_delete", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/comments/force_delete", { 
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

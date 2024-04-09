@@ -24,7 +24,7 @@ function Categories()
         {
             // fetch
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/categories", {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/categories", {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken
@@ -92,7 +92,7 @@ function Categories()
             }
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/category/delete", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/category/delete", { 
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

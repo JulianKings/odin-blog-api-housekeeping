@@ -112,7 +112,7 @@ function Login()
         if(!errorNoticed)
         {
             // ask the backEnd
-            fetch("http://localhost:3000/login", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/login", { 
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 mode: "cors",

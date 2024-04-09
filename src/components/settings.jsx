@@ -24,7 +24,7 @@ function Settings()
         {
             // fetch
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/settings", {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/settings", {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken
@@ -107,7 +107,7 @@ function Settings()
             }
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/settings/edit", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/settings/edit", { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

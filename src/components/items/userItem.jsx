@@ -65,7 +65,7 @@ function UserItem({ user, usersState, updateUsers }) {
 
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/users/update_ban", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/users/update_ban", { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function UserItem({ user, usersState, updateUsers }) {
 
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/users/update_role", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/users/update_role", { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function UserItem({ user, usersState, updateUsers }) {
 
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/users/update_role", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/users/update_role", { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

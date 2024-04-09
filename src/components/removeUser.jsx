@@ -52,7 +52,7 @@ function RemoveUser()
             }
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/users/force_delete", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/users/force_delete", { 
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

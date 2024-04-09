@@ -37,7 +37,7 @@ function AddCategory({type})
         if(type === 'edit' && localStorage.getItem('sso_token'))
         {
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/category/find/" + id, {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/category/find/" + id, {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken
@@ -107,7 +107,7 @@ function AddCategory({type})
                 }
                 const ssoToken = localStorage.getItem('sso_token');
                 // ask the backEnd
-                fetch("http://localhost:3000/sso/admin/category/add", { 
+                fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/category/add", { 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ function AddCategory({type})
                 }
                 const ssoToken = localStorage.getItem('sso_token');
                 // ask the backEnd
-                fetch("http://localhost:3000/sso/admin/category/edit", { 
+                fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/category/edit", { 
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

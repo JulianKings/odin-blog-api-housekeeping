@@ -80,7 +80,7 @@ function ArticleItem({ article, articlesState, updateArticles, userInstance }) {
 
             const ssoToken = localStorage.getItem('sso_token');
             // ask the backEnd
-            fetch("http://localhost:3000/sso/admin/articles/update_status", { 
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/articles/update_status", { 
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

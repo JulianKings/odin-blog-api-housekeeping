@@ -32,7 +32,7 @@ function AddArticle({type})
         {
             // fetch
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/articles/categories", {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/articles/categories", {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken
@@ -74,7 +74,7 @@ function AddArticle({type})
         if(type === 'edit' && localStorage.getItem('sso_token'))
         {
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso/admin/article/find/" + id, {                
+            fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/article/find/" + id, {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken
@@ -273,7 +273,7 @@ function AddArticle({type})
             {
                 const ssoToken = localStorage.getItem('sso_token');
                 // ask the backEnd
-                fetch("http://localhost:3000/sso/admin/articles/add", { 
+                fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/articles/add", { 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -347,7 +347,7 @@ function AddArticle({type})
             {
                 const ssoToken = localStorage.getItem('sso_token');
                 // ask the backEnd
-                fetch("http://localhost:3000/sso/admin/articles/edit", { 
+                fetch("https://odin-blog-app-904858222abf.herokuapp.com/sso/admin/articles/edit", { 
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
