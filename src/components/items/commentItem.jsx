@@ -9,7 +9,7 @@ function CommentItem({ comment }) {
     let commentMessage = '';
     if(comment.message.length > 40)
     {
-        commentMessage = comment.message(0, 40) + "...";
+        commentMessage = comment.message.substring(0, 40) + "...";
     } else {
         commentMessage = comment.message;
     }
